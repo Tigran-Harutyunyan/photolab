@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import FiMenu from "@/components/ui/icons/FiMenu.vue";
-import SlBag from "@/components/ui/icons/SlBag.vue";
+import { FiMenu } from "@/components/ui/icons";
+import { SlBag } from "@/components/ui/icons";
 import { useCart } from "@/store/cart";
 
 const { setIsOpen } = useCart();

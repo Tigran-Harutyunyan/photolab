@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FiSearch from "@/components/ui/icons/FiSearch.vue";
+import { FiSearch } from "@/components/ui/icons";
 
 const searchTerm = ref();
 

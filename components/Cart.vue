@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import IoArrowForward from "@/components/ui/icons/IoArrowForward.vue";
-import IoCartOutline from "@/components/ui/icons/IoCartOutline.vue";
-import IoClose from "@/components/ui/icons/IoClose.vue";
+import { IoArrowForward } from "@/components/ui/icons";
+import { IoCartOutline } from "@/components/ui/icons";
+import { IoClose } from "@/components/ui/icons";
 import { toast } from "vue-sonner";
 import { useCart } from "@/store/cart";
 

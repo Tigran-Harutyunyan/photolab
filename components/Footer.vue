@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import FaFacebook from "@/components/ui/icons/FaFacebook.vue";
-import FaInstagram from "@/components/ui/icons/FaInstagram.vue";
-import FaTwitter from "@/components/ui/icons/FaTwitter.vue";
-import FaYoutube from "@/components/ui/icons/FaYoutube.vue";
+import { FaFacebook } from "@/components/ui/icons";
+import { FaInstagram } from "@/components/ui/icons";
+import { FaTwitter } from "@/components/ui/icons";
+import { FaYoutube } from "@/components/ui/icons";
 </script>
 
 <template>

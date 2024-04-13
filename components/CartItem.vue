@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IoClose from "@/components/ui/icons/IoClose.vue";
+import { IoClose } from "@/components/ui/icons";
 import type { TCart } from "@/types";
 import { useCart } from "@/store/cart";
 

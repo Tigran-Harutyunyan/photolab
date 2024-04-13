@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FiX from "@/components/ui/icons/FIX.vue";
+import { FiX } from "@/components/ui/icons";
 const emit = defineEmits(["close"]);
 
 import { useMain } from "@/store/main";
