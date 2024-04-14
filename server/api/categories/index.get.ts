@@ -1,9 +1,9 @@
 import { Category } from "~~/server/models/category.model";
-import { connectToDatabase } from "../../mongoose";
+// import { connectToDatabase } from "../../mongoose";
 
 export default defineEventHandler(async (event) => {
     try {
-        await connectToDatabase()
+        // await connectToDatabase()
 
         return await Category.find();
 

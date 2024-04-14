@@ -1,10 +1,12 @@
 import { Product } from "~~/server/models/product.model";
-import { connectToDatabase } from "../../mongoose";
+//import { connectToDatabase } from "../../mongoose";
 
 export default defineEventHandler(async (event) => {
     try {
         const queryParams = await getQuery(event);
-        await connectToDatabase()
+
+        //await connectToDatabase();
+
         if (queryParams?.query) {
             return await Product.find({ 'title': { $regex: new RegExp(`${queryParams?.query}`, "ig") } });
         }
