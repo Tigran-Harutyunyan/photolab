@@ -7,8 +7,6 @@ interface Props {
 const props = defineProps<Props>();
 
 const { product } = toRefs(props);
-
-const formattedPrice = useCurrency(product?.price);
 </script>
 
 <template>
@@ -45,7 +43,7 @@ const formattedPrice = useCurrency(product?.price);
           ...
         </div>
 
-        <div class="text-lg text-accent">{{ formattedPrice }}</div>
+        <div class="text-lg text-accent">{{ useCurrency(product.price) }}</div>
       </section>
     </div>
   </NuxtLink>
