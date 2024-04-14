@@ -9,8 +9,8 @@ const { setCategories } = useMain();
 
 const { data: categories } = await useFetch("/api/categories");
 
-if (categories && Array.isArray(categories)) {
-  setCategories(categories as TCategory[]);
+if (categories.value && Array.isArray(categories.value)) {
+  setCategories(categories.value as TCategory[]);
 }
 </script>
 
