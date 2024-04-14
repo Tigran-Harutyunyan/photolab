@@ -1,4 +1,5 @@
 import { Category } from "~~/server/models/category.model";
+import { connectToDatabase } from "../../mongoose";
 
 export default defineEventHandler(async (event) => {
     const params = await event.context.params;
@@ -9,6 +10,8 @@ export default defineEventHandler(async (event) => {
             statusMessage: "No categoryId"
         });
     }
+
+    await connectToDatabase();
 
     try {
         return await Category.findOne({ _id: params?.categoryId as string });

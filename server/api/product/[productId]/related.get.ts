@@ -1,4 +1,5 @@
 import { Product } from "~~/server/models/product.model";
+import { connectToDatabase } from "../../../mongoose";
 
 export default defineEventHandler(async (event) => {
     try {
@@ -18,6 +19,9 @@ export default defineEventHandler(async (event) => {
                 statusMessage: "No ProductId"
             });
         }
+
+        await connectToDatabase();
+
         const products = await Product.find({ categoryId: categoryId as string })
 
         return Array.isArray(products) ? products.filter(prod => prod._id != params.productId) : []

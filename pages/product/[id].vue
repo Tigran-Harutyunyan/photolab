@@ -35,7 +35,7 @@ if (!product.value) {
 
           <div class="flex flex-col gap-x-8 items-center xs:flex-row">
             <div class="mb-7 text-3xl font-semibold text-accent xs:mb-0">
-              {{ `$${product.price}` }}
+              {{ useCurrency(product.price) }}
             </div>
             <button
               class="btn btn-accent"
