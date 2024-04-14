@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute } from "vue-router";
+import type { TProduct } from "@/types";
 
 const getQueryParams = () => {
   return location?.search
@@ -9,28 +9,30 @@ const getQueryParams = () => {
 
 let searchTerm = getQueryParams();
 
-const route = useRoute();
+const searchResults = ref();
 
-const { find } = useStrapi();
+const route = useRoute();
 
 const products = ref();
 
-const getData = async () => {
-  const { data } = await find(
-    `products?populate=*&filters[title][$contains]=${searchTerm}`
-  );
+const setResultsText = () => {
+  searchResults.value =
+    products.value?.length > 0
+      ? `${products.value?.length} results for '${searchTerm}'`
+      : `no results found for ${searchTerm}`;
+};
 
-  if (data && Array.isArray(data)) {
+const getData = async () => {
+  const data = await $fetch(`/api/products?query=${searchTerm}`);
+
+  if (Array.isArray(data)) {
     products.value = data;
+    setResultsText();
   }
 };
 
-getData();
-
-const searchResults = computed(() => {
-  return products.value?.length > 0
-    ? `${products.value?.length} results for ${searchTerm}`
-    : `no results found for ${searchTerm}`;
+onMounted(() => {
+  getData();
 });
 
 watch(

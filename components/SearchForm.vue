@@ -3,6 +3,8 @@ import { FiSearch } from "@/components/ui/icons";
 
 const searchTerm = ref();
 
+const route = useRoute();
+
 const handleSubmit = () => {
   if (searchTerm.value?.length > 0) {
     navigateTo(`/search?query=${searchTerm.value}`);
@@ -17,6 +19,18 @@ onMounted(() => {
     searchTerm.value = search.get("query");
   }
 });
+
+watch(
+  () => route.fullPath,
+  () => {
+    const search = new URLSearchParams(location?.search);
+    if (search.has("query")) {
+      searchTerm.value = search.get("query");
+    } else {
+      searchTerm.value = "";
+    }
+  }
+);
 </script>
 
 <template>

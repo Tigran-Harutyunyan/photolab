@@ -13,7 +13,7 @@ export const useCart = defineStore("cart", () => {
 
   const totalItems = computed(() => cart.value.reduce((acc, cur) => acc + cur.amount, 0));
 
-  const totalPrice = computed(() => cart.value.reduce((acc, cur) => acc + cur.item.attributes.price * cur.amount, 0));
+  const totalPrice = computed(() => cart.value.reduce((acc, cur) => acc + cur.item.price * cur.amount, 0));
 
   const setIsOpen = (val: boolean) => {
     isOpen.value = val;

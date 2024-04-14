@@ -1,24 +1,29 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxt/image', '@nuxtjs/strapi', 'nuxt-swiper', '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt',
+  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxt/image', "@nuxtjs/cloudinary", 'nuxt-swiper', '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt', 'nuxt-server-utils', '@unlok-co/nuxt-stripe'
   ],
   runtimeConfig: {
     public: {
-      apiUrl: process.env.API_URL,
-    }
-  },
-  strapi: {
-    url: process.env.API_URL,
-    prefix: '/api',
-    admin: '/admin',
-    version: 'v4',
-    cookie: {},
-    cookieName: 'strapi_jwt'
+      appUrl: process.env.NUXT_APP_URL
+    },
+    stripeKey: process.env.STRIPE_SECRET_KEY,
   },
   shadcn: {
     prefix: '',
     componentDir: './components/ui'
   },
-
+  nuxtServerUtils: {
+    enabled: true, // default
+    enableDevTools: true, // default
+    mongodbUri: process.env.MONGODB_URI,
+  },
+  stripe: {
+    server: {
+      key: process.env.STRIPE_SECRET_KEY,
+      options: {
+        apiVersion: '2022-11-15',
+      }
+    }
+  }
 })

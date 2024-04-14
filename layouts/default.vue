@@ -7,12 +7,10 @@ import { useMain } from "@/store/main";
 
 const { setCategories } = useMain();
 
-const { find } = useStrapi();
+const { data: categories } = await useFetch("/api/categories");
 
-const { data } = await find("categories");
-
-if (data && Array.isArray(data)) {
-  setCategories(data as TCategory[]);
+if (categories.value && Array.isArray(categories.value)) {
+  setCategories(categories.value as TCategory[]);
 }
 </script>
 

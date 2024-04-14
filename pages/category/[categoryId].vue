@@ -1,24 +1,15 @@
 <script setup lang="ts">
-import type { ProductsResponse, ProductWithAttributes } from "@/types";
+import type { TCategory, TProduct } from "@/types";
 
 const route = useRoute();
 
-const { find } = useStrapi();
-
-const data = await find<ProductsResponse>(
-  `products?populate=*&filters[categories][id][$eq]=${route.params.categoryId}`
+const { data: products } = await useFetch<TProduct[] | null>(
+  `/api/products/${route.params.categoryId}`
 );
 
-const products = computed<ProductWithAttributes>(() => {
-  if (!data) return null;
-  return data.data;
-});
-
-const title = computed<string | null>(() => {
-  return products.value
-    ? products.value[0].attributes.categories.data[0].attributes.title
-    : "";
-});
+const { data: category } = await useFetch<TCategory | null>(
+  `/api/category/${route.params.categoryId}`
+);
 </script>
 
 <template>
@@ -29,7 +20,7 @@ const title = computed<string | null>(() => {
 
         <main class="flex flex-col mx-auto">
           <div class="py-3 text-xl text-center uppercase lg:text-left w-[100%]">
-            {{ title }} cameras
+            {{ category?.title }} cameras
           </div>
 
           <div
@@ -37,7 +28,7 @@ const title = computed<string | null>(() => {
           >
             <Product
               v-for="product in products"
-              :key="product.id"
+              :key="product._id"
               :product="product"
             />
           </div>

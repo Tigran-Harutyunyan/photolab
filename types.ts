@@ -137,43 +137,19 @@ export interface categoryAttributes {
 
 
 type TProduct = {
-    id: number;
-    attributes: {
-        categories: {
-            data: [
-                {
-                    id: number;
-                    attributes: {
-                        title: string;
-                        // ...
-                    };
-                },
-            ];
-        };
-        createdAt: Date;
-        description: string;
-        image: {
-            data: {
-                attributes: {
-                    name: string;
-                    url: string;
-                    // ...
-                };
-            };
-        };
-        isNew: boolean;
-        price: number;
-        title: string;
-        // ...
-    };
+    _id: string;
+    categoryId: string
+    title: string
+    description: string
+    image: string
+    isNew: boolean
+    price: number
+
 };
 
 type TCategory = {
-    id: number;
-    attributes: {
-        title: string;
-        // ...
-    };
+    _id: string;
+    title: string;
 };
 
 type TCart = {

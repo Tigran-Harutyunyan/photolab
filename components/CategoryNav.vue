@@ -24,10 +24,10 @@ const currentCategoryId = computed(() => {
           v-for="category in categories"
           :key="category.id"
           class="uppercase cursor-pointer"
-          :class="{ 'text-accent': currentCategoryId === String(category.id) }"
-          :to="`/category/${category.id}`"
+          :class="{ 'text-accent': currentCategoryId === String(category._id) }"
+          :to="`/category/${category._id}`"
         >
-          {{ category?.attributes?.title }}
+          {{ category?.title }}
         </NuxtLink>
       </div>
     </div>

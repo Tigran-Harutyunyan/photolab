@@ -19,12 +19,12 @@ const currentCategoryId = computed(() => {
     <div class="flex flex-col gap-y-8">
       <NuxtLink
         v-for="category in categories"
-        :key="category.id"
+        :key="category._id"
         class="font-medium uppercase"
-        :class="{ 'text-accent': currentCategoryId === String(category.id) }"
-        :to="`/category/${category.id}`"
+        :class="{ 'text-accent': currentCategoryId === String(category._id) }"
+        :to="`/category/${category._id}`"
       >
-        {{ category?.attributes.title }} cameras
+        {{ category?.title }} cameras
       </NuxtLink>
     </div>
   </div>

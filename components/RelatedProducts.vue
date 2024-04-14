@@ -1,25 +1,16 @@
 <script setup lang="ts">
 import type { TProduct } from "@/types";
-import type { ProductsResponse } from "@/types";
 
 type Props = {
-  categoryTitle: string | undefined;
+  categoryId: string;
   productId: string;
 };
 
-const { categoryTitle, productId } = defineProps<Props>();
+const { categoryId, productId } = defineProps<Props>();
 
-const { find } = useStrapi();
-
-const data = await find<ProductsResponse>(
-  `products?populate=*&filters[categories][title]=${categoryTitle}`
+const { data: products } = await useFetch<TProduct[]>(
+  `/api/product/${productId}/related?categoryId=${categoryId}`
 );
-
-const products = computed(() => {
-  return data?.data && productId
-    ? data.data.filter((item: TProduct) => item.id != productId)
-    : [];
-});
 </script>
 
 <template>

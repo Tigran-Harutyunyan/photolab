@@ -14,14 +14,15 @@ const handlePayment = async () => {
   isButtonDisabled.value = true;
 
   try {
-    const { create } = useStrapi();
-
-    const res = await create("orders", {
-      cart: JSON.stringify(toRaw(cart.value)),
+    const response = await $fetch("/api/checkout", {
+      method: "post",
+      body: {
+        cart: toRaw(cart.value),
+      },
     });
 
-    if (res?.stripeSession?.url) {
-      window.location.href = res?.stripeSession?.url;
+    if (response?.url) {
+      window.location.href = response?.url;
     }
   } catch (error) {
     console.log(error);
@@ -61,14 +62,14 @@ onMounted(() => {
     </div>
 
     <div v-if="cart.length > 0" class="flex flex-col px-6 py-10">
-      <div class="flex justify-between text-lg">
+      <!-- <div class="flex justify-between text-lg">
         <div>Subtotal:</div>
-        <div>${{ totalPrice }}</div>
-      </div>
+        <div>{{ useCurrency(totalPrice) }}</div>
+      </div> -->
 
       <div class="flex justify-between text-2xl">
         <div>Total:</div>
-        <div>${{ totalPrice }}</div>
+        <div>{{ useCurrency(totalPrice) }}</div>
       </div>
     </div>
 

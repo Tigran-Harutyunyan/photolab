@@ -10,24 +10,17 @@ type Props = {
 };
 
 const { item } = defineProps<Props>();
-
-const apiUrl = useRuntimeConfig().public.apiUrl;
 </script>
 
 <template>
   <div class="flex gap-x-8">
-    <Link class="w-[70px] h-[70px]" :to="`product/${item.id}`">
-      <NuxtImg
-        :alt="item.item.attributes.title"
-        :src="`${apiUrl}${item.item.attributes.image.data.attributes.url}`"
-      />
-    </Link>
+    <NuxtLink class="w-[70px] h-[70px]" :to="`/product/${item.id}`">
+      <NuxtImg :alt="item.item.title" :src="item.item.image" />
+    </NuxtLink>
 
     <div class="flex-1">
       <div class="flex gap-x-4 mb-3">
-        <NuxtLink :to="`product/${item.id}`">{{
-          item.item.attributes.title
-        }}</NuxtLink>
+        <NuxtLink :to="`/product/${item.id}`">{{ item.item.title }}</NuxtLink>
 
         <div
           class="cursor-pointer text-[24px] hover:text-accent transition-all"
@@ -42,13 +35,13 @@ const apiUrl = useRuntimeConfig().public.apiUrl;
           <Qty :item="item" />
         </div>
         <div class="text-xl text-accent">
-          {{ `$ ${item.item.attributes.price * item.amount}` }}
+          {{ `${useCurrency(item.item.price * item.amount)}` }}
         </div>
       </div>
 
       <div>
         <span class="text-accent">{{
-          `$ ${item.item.attributes.price} per piece`
+          `${useCurrency(item.item.price)} per piece`
         }}</span>
       </div>
     </div>
