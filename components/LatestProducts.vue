@@ -1,5 +1,10 @@
 <script setup lang="ts">
-const { data: products } = await useFetch("/api/products");
+//const { data: products } = await useFetch("/api/products");
+const { data: products } = await useLazyAsyncData(
+  "products",
+  () => $fetch(`/api/products`),
+  { server: false }
+);
 </script>
 
 <template>
