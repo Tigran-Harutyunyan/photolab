@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// TODO move special offers to strapi
+// TODO move special offers to mongoDB
 const sliderData = [
   {
     id: 1,

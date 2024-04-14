@@ -20,6 +20,7 @@ const currentCategoryId = computed(() => {
       <NuxtLink
         v-for="category in categories"
         :key="category._id"
+        @click="emit('close')"
         class="font-medium uppercase"
         :class="{ 'text-accent': currentCategoryId === String(category._id) }"
         :to="`/category/${category._id}`"

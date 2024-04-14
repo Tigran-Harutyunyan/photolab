@@ -1,5 +1,4 @@
 import { Product } from "~~/server/models/product.model";
-import { connectToDatabase } from "../../mongoose";
 
 export default defineEventHandler(async (event) => {
     try {
@@ -11,8 +10,6 @@ export default defineEventHandler(async (event) => {
                 statusMessage: "No categoryId"
             });
         }
-
-        await connectToDatabase();
 
         return await Product.find({ categoryId: params?.categoryId as string });
     } catch (error) {

@@ -2,14 +2,11 @@ import { Order } from "~~/server/models/order.model";
 import { Product } from "~~/server/models/product.model";
 import type { TCart } from "@/types";
 import { useServerStripe } from '#stripe/server';
-import { connectToDatabase } from "../../mongoose";
 
 export default defineEventHandler(async (event) => {
 
   const APP_URL = useRuntimeConfig().public.appUrl as string;
   const { cart } = await readBody(event);
-
-  await connectToDatabase();
 
   try {
 

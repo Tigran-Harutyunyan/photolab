@@ -37,7 +37,7 @@ watch(
   <form class="relative w-full" @submit.prevent="handleSubmit">
     <input
       class="input max-h-[40px]"
-      placeholder="search for a product..."
+      placeholder="Search for a product..."
       type="text"
       v-model="searchTerm"
     />
