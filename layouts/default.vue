@@ -7,11 +7,15 @@ import { useMain } from "@/store/main";
 
 const { setCategories } = useMain();
 
-// const { data: categories } = await useFetch("/api/categories");
+const { data: categories } = await useAsyncData(
+  "categories",
+  () => $fetch("/api/categories"),
+  { server: false }
+);
 
-// if (categories.value && Array.isArray(categories.value)) {
-//   setCategories(categories.value as TCategory[]);
-// }
+if (categories.value && Array.isArray(categories.value)) {
+  setCategories(categories.value as TCategory[]);
+}
 </script>
 
 <template>

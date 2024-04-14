@@ -1,8 +1,7 @@
 <script setup lang="ts">
-//const { data: products } = await useFetch("/api/products");
-const { data: products } = await useLazyAsyncData(
+const { data: products } = await useAsyncData(
   "products",
-  () => $fetch(`/api/products`),
+  () => $fetch("/api/products"),
   { server: false }
 );
 </script>
@@ -10,6 +9,6 @@ const { data: products } = await useLazyAsyncData(
 <template>
   <div class="container mx-auto mb-16">
     <h2 class="h2 mb-6 text-center xl:text-left">Latest Products</h2>
-    <ProductSlider :products="products" />
+    <ProductSlider :products="products" v-if="products" />
   </div>
 </template>
