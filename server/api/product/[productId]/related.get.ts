@@ -1,5 +1,4 @@
 import { Product } from "~~/server/models/product.model";
-import { connectToDatabase } from "../../../mongoose";
 
 export default defineEventHandler(async (event) => {
     try {
@@ -20,7 +19,7 @@ export default defineEventHandler(async (event) => {
             });
         }
 
-        await connectToDatabase();
+
 
         const products = await Product.find({ categoryId: categoryId as string })
 
