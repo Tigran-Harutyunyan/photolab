@@ -16,11 +16,19 @@ const showSlider = ref(false);
     :loop="false"
     navigation
     @init="showSlider = true"
+    :freeMode="{
+      enabled: true,
+      sticky: false,
+    }"
     :breakpoints="{
       320: {
         slidesPerView: 1,
         slidesPerGroup: 1,
         spaceBetween: 30,
+        freeMode: {
+          enabled: true,
+          sticky: false,
+        },
       },
       768: {
         slidesPerView: 2,

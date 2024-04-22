@@ -58,3 +58,7 @@
   padding: 2rem;
   width: 200px;
 }
+
+.swiper-button-prev, .swiper-button-next {
+  top: 46% !important;
+}
