@@ -6,17 +6,16 @@ interface Props {
 }
 const props = defineProps<Props>();
 const { products } = toRefs(props);
-const showSlider =ref(false);
+const showSlider = ref(false);
 </script>
 
 <template>
   <Swiper
     v-if="products"
-    slidesPerView: 5, 
-    :modules="[SwiperPagination, SwiperNavigation]"
+    :modules="[SwiperNavigation]"
     :loop="false"
     navigation
-    @init="showSlider=true"
+    @init="showSlider = true"
     :breakpoints="{
       320: {
         slidesPerView: 1,
@@ -41,7 +40,7 @@ const showSlider =ref(false);
     }"
     class="productSlider mx-auto sm:max-w-[512px] lg:max-w-[734px] xl:max-w-[1410px]"
   >
-    <SwiperSlide v-for="item in products" :key="item._id" v-show=showSlider>
+    <SwiperSlide v-for="item in products" :key="item._id" v-show="showSlider">
       <Product :product="item" />
     </SwiperSlide>
   </Swiper>
